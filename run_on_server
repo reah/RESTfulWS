@@ -1,0 +1,12 @@
+mvn -U clean install -Dmaven.test.skip=true
+cd /usr/local/Cellar/tomcat/apache-tomcat-7.0.25/
+echo "stopping server"
+bin/shutdown.sh
+echo "removing all logs"
+rm -rf logs/*
+echo "removing webservice directory from webapps folder"
+rm -rf webapps/RESTful*
+echo "copying new war into webapps"
+cp /Users/reahmiyara/luna-workspace/RESTfulWS/target/RESTfulWS-0.0.1-SNAPSHOT.war webapps/
+echo "starting server"
+bin/startup.sh
